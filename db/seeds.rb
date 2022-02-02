@@ -16,7 +16,7 @@ budget_names = ['Housing','Utilities','Food','Transportation','Subscriptions']
 
 
 budget_names.each do |name| 
-  budget = Budget.create(name: name)
+  budget = Budget.create(name: name, budget_max: Faker::Number.number(digits:rand(1..4)))
   rand(1..5).times do
     expense = Expense.create(name: Faker::Ancient.titan, amount: Faker::Number.decimal(l_digits:rand(1..3),r_digits:2))
     budget.expenses << expense
