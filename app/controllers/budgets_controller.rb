@@ -5,7 +5,19 @@ class BudgetsController < ApplicationController
   end
 
   def create
+    budget = Budget.new(budget_params)
+    binding.pry
+    if budget.save
+      render json: BudgetSerializer.new(budget), status: :created 
+    else
+      render json: {errors: budget.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 
+  private
+
+  def budget_params
+    params.require(:budget).permit(:name, :budget_max)
   end
 
   
