@@ -6,7 +6,6 @@ class BudgetsController < ApplicationController
 
   def create
     budget = Budget.new(budget_params)
-    binding.pry
     if budget.save
       render json: BudgetSerializer.new(budget), status: :created 
     else
