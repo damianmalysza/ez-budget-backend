@@ -13,6 +13,17 @@ class BudgetsController < ApplicationController
     end
   end
 
+  def destroy
+    budget = Budget.find(params[:id])
+    if budget
+      budget.expenses.destroy_all
+      budget.destroy
+      render json: BudgetSerializer.new(budget), status: :ok
+    else
+      render status: :unprocessable_entity
+    end
+  end
+
   private
 
   def budget_params
