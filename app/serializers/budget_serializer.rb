@@ -1,6 +1,6 @@
 class BudgetSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :budget_max 
+  attributes :name, :budget_max, :expense_total
 
   attributes :expenses do |budget|
     return_array = []
