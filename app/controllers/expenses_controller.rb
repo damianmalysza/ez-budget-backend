@@ -15,7 +15,14 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-
+    budget = Budget.find(params[:budget_id])
+    expense = Expense.find(params[:id])
+    if expense && budget
+      expense.destroy
+      render json: BudgetSerializer.new(budget), status: :ok
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   private
