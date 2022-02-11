@@ -7,7 +7,7 @@ class BudgetsController < ApplicationController
   def create
     budget = Budget.new(budget_params)
     if budget.save
-      render json: BudgetSerializer.new(budget), status: :created 
+      render json: BudgetSerializer.new(budget), status: :ok
     else
       render json: {errors: budget.errors.full_messages}, status: :unprocessable_entity
     end
